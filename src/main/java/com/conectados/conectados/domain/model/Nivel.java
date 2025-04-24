@@ -25,7 +25,7 @@ public class Nivel {
     private Long id;
 
     @NotBlank
-    @Size(min = 10, max = 150)
+    @Size(min = 4, max = 50)
     private String nome;
 
     @OneToMany(mappedBy = "nivel")
