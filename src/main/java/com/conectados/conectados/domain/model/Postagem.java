@@ -42,7 +42,7 @@ public class Postagem {
     private String imagemUrl;
 
     @ManyToOne
-    @JsonIgnoreProperties("postagens")
+    @JsonIgnoreProperties({"postagens", "respostas", "redesSociais", "nivel", "jogos"})
     private Usuario usuario;
 
     @CreationTimestamp
@@ -52,6 +52,6 @@ public class Postagem {
     private LocalDate dataAtualizacao;
 
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("postagem")
+    @JsonIgnoreProperties({"postagem", "usuario"})
     private List<Resposta> respostas;
 }

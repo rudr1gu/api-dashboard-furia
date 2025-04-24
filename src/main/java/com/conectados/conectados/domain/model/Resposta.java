@@ -36,9 +36,10 @@ public class Resposta {
     private LocalDate dataAtualizacao;
 
     @ManyToOne
+    @JsonIgnoreProperties({ "postagens", "respostas", "nivel", "redesSociais", "jogos" })
     private Usuario usuario;
 
     @ManyToOne
-    @JsonIgnoreProperties("respostas")
+    @JsonIgnoreProperties({ "usuario", "respostas" })
     private Postagem postagem;
 }

@@ -53,12 +53,12 @@ public class Usuario {
     @CreationTimestamp
     private LocalDate dataCriacao;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({ "usuario", "respostas" })
     private List<Postagem> postagens;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
+    @JsonIgnoreProperties({ "usuario", "postagem" })
     private List<Resposta> respostas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -72,5 +72,4 @@ public class Usuario {
     @JoinTable(name = "usuario_jogo", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "jogo_id"))
     @JsonIgnoreProperties("usuarios")
     private List<Jogo> jogos;
-
 }
