@@ -35,10 +35,8 @@ public class EventoService {
         return eventoRepository.save(evento);
     }
 
-    public Evento DeletarEvento(Long id) {
-        Evento evento = eventoRepository.findById(id).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
-        eventoRepository.delete(evento);
-        return evento;
+    public void DeletarEvento(Long id) {
+        eventoRepository.deleteById(id);
     }
 
 }
