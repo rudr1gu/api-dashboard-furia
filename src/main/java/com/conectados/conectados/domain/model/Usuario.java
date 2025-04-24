@@ -1,6 +1,9 @@
 package com.conectados.conectados.domain.model;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -40,6 +43,9 @@ public class Usuario {
     private String tipo;
 
     private String avatar;
+
+    @CreationTimestamp
+    private LocalDate dataCriacao;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Postagem> postagens;
