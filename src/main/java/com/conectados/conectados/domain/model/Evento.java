@@ -1,7 +1,5 @@
 package com.conectados.conectados.domain.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +22,7 @@ public class Evento {
 
     private String descricao;
 
-    private LocalDate dataInicio;
+    private String dataInicio;
 
     private String localizacao;
 
