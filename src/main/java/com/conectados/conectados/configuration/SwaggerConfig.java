@@ -26,7 +26,7 @@ public class SwaggerConfig {
                         .contact(new Contact().name("Rodrigo Santos").url("https://rudr1gu.vercel.app")
                                 .email("rodrigo.santos.ii@hotmail.com")))
                 .externalDocs(new ExternalDocumentation().description("Github")
-                        .url("https://github.com/rudr1gu/API-Conectados-JAVA"));
+                        .url("https://github.com/rudr1gu/api-dashboard-furia"));
     }
 
     @Bean
