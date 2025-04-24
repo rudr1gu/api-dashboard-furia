@@ -28,8 +28,7 @@ public class Nivel {
     @Size(min = 10, max = 150)
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "nivel")
     @JsonIgnoreProperties("nivel")
     private List<Usuario> usuarios;
-
 }

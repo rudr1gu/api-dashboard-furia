@@ -2,6 +2,8 @@ package com.conectados.conectados.domain.model;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +27,10 @@ public class Resposta {
     @NotBlank
     private String conteudo;
 
+    @CreationTimestamp
     private LocalDate dataCriacao;
 
+    @CreationTimestamp
     private LocalDate dataAtualizacao;
 
     @ManyToOne

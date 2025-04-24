@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -14,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -58,7 +58,10 @@ public class Usuario {
     @JsonIgnoreProperties("usuario")
     private List<Resposta> respostas;
 
-    @ManyToAny
-    private Nivel nivel;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<RedeSocial> redesSociais;
 
+    @ManyToOne
+    @JsonIgnoreProperties("usuarios")
+    private Nivel nivel;
 }
