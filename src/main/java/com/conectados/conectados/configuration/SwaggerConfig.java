@@ -19,9 +19,9 @@ public class SwaggerConfig {
     OpenAPI conectadosOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Conectados API")
+                        .title("Dashboard Furia API")
                         .version("v.0.0.1")
-                        .description("documentação da API Conectados")
+                        .description("documentação da API Dashboard Furia")
                         .license(new License().name("").url(""))
                         .contact(new Contact().name("Rodrigo Santos").url("https://rudr1gu.vercel.app")
                                 .email("rodrigo.santos.ii@hotmail.com")))
