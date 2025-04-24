@@ -1,5 +1,7 @@
 package com.conectados.conectados.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,5 +26,6 @@ public class RedeSocial {
     private String urlRedeSocial;
 
     @ManyToOne
+    @JsonIgnoreProperties("redesSociais")
     private Usuario usuario;
 }
