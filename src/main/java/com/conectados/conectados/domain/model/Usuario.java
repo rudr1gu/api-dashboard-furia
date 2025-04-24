@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,8 +51,14 @@ public class Usuario {
     private LocalDate dataCriacao;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
     private List<Postagem> postagens;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
     private List<Resposta> respostas;
+
+    @ManyToAny
+    private Nivel nivel;
+
 }
