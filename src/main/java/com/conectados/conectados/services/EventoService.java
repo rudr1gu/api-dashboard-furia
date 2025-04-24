@@ -31,10 +31,14 @@ public class EventoService {
         return Optional.of(eventos);
     }
 
+    public Evento atualizarEvento(Evento evento) {
+        return eventoRepository.save(evento);
+    }
+
     public Evento DeletarEvento(Long id) {
         Evento evento = eventoRepository.findById(id).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
         eventoRepository.delete(evento);
         return evento;
     }
-    
+
 }
