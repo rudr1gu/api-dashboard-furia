@@ -52,6 +52,4 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Resposta> respostas;
-
-
 }
