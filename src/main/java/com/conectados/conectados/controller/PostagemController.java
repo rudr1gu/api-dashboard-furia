@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.conectados.conectados.domain.model.Postagem;
 import com.conectados.conectados.services.PostagemService;
@@ -54,9 +53,6 @@ public class PostagemController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deletarPostagem(@PathVariable Long id) {
-        if (postagemService.buscarPostagemPorId(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Postagem não encontrada");
-        }
         postagemService.deletarPostagem(id);
     }
 

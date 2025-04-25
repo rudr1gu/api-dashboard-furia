@@ -36,6 +36,10 @@ public class PostagemService {
     }
 
     public void deletarPostagem(Long id) {
+        Optional<Postagem> postagem = buscarPostagemPorId(id);
+        if (postagem.isEmpty()) {
+            throw new RuntimeException("Postagem não encontrada");
+        }
         postagemRepository.deleteById(id);
     }
 
