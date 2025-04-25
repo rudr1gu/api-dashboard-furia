@@ -36,6 +36,10 @@ public class RedeSocialService {
     }
 
     public void deletarRedeSocial(Long id) {
+        Optional<RedeSocial> redeSocial = buscarRedeSocialPorId(id);
+        if (redeSocial.isEmpty()) {
+            throw new RuntimeException("Rede Social não encontrada");
+        }
         redeSocialRepository.deleteById(id);
     }
     
