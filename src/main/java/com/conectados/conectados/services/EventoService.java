@@ -36,6 +36,10 @@ public class EventoService {
     }
 
     public void DeletarEvento(Long id) {
+        Optional<Evento> evento = buscarEventoPorId(id);
+        if (evento.isEmpty()) {
+            throw new RuntimeException("Evento não encontrado");
+        }
         eventoRepository.deleteById(id);
     }
 
