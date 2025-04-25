@@ -37,6 +37,10 @@ public class NivelService {
     }
 
     public void deletarNivel(Long id) {
+        Optional<Nivel> nivel = buscarNivelPorId(id);
+        if (nivel.isEmpty()) {
+            throw new RuntimeException("Nível não encontrado");
+        }
         nivelRepository.deleteById(id);
     }
 
