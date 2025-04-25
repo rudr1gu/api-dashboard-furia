@@ -37,6 +37,10 @@ public class RespostaService {
     }
 
     public void deletarResposta(Long id) {
+        Optional<Resposta> resposta = buscarRespostaPorId(id);
+        if (resposta.isEmpty()) {
+            throw new RuntimeException("Resposta não encontrada");
+        }
         respostaRepository.deleteById(id);
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.conectados.conectados.domain.model.Resposta;
 import com.conectados.conectados.services.RespostaService;
@@ -56,9 +55,6 @@ public class RespostaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deletarResposta(@PathVariable Long id) {
-        if (respostaService.buscarRespostaPorId(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Resposta não encontrada");
-        }
         respostaService.deletarResposta(id);
     }
 
