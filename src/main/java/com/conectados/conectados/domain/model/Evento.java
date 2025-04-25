@@ -24,6 +24,8 @@ public class Evento {
 
     private String dataInicio;
 
+    private String horaInicio;
+
     private String localizacao;
 
     private String link;

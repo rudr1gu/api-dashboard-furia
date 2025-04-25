@@ -50,6 +50,8 @@ public class Usuario {
 
     private String avatar;
 
+    private String bio;
+
     @CreationTimestamp
     private LocalDate dataCriacao;
 
