@@ -36,6 +36,10 @@ public class InteracaoService {
     }
 
     public void deletarInteracao(Long id) {
+        Optional<Interacao> interacao = buscarInteracaoPorId(id);
+        if (interacao.isEmpty()) {
+            throw new RuntimeException("Interação não encontrada");
+        }
         interacaoRepository.deleteById(id);
     }
 

@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.conectados.conectados.services.InteracaoService;
 
@@ -55,9 +54,6 @@ public class InteracaoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deletarInteracao(@PathVariable Long id) {
-        if (interacaoService.buscarInteracaoPorId(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Interação não encontrada");
-        }
         interacaoService.deletarInteracao(id);
     }
     
