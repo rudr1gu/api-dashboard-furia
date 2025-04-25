@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.conectados.conectados.domain.model.Jogo;
 import com.conectados.conectados.services.JogoService;
@@ -56,9 +55,6 @@ public class JogoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deletarJogo(@PathVariable Long id) {
-        if (jogoService.buscarJogoPorId(id).isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Jogo não encontrado");
-        }
         jogoService.deletarJogo(id);
     }
 }

@@ -36,6 +36,10 @@ public class JogoService {
     }
 
     public void deletarJogo(Long id) {
+        Optional<Jogo> jogo = buscarJogoPorId(id);
+        if (jogo.isEmpty()) {
+            throw new RuntimeException("Jogo não encontrado");
+        }
         jogoRepository.deleteById(id);
     }
 
