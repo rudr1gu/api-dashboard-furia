@@ -38,7 +38,7 @@ public class Postagem {
     @Size(min = 10, max = 5000,message = "O conteúdo deve ter no mínimo 10 caracteres")
     private String conteudo;
 
-
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
     private String imagemUrl;
 
     @ManyToOne

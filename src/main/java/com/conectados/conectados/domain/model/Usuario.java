@@ -21,6 +21,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,6 +49,7 @@ public class Usuario {
     @NotBlank
     private String tipo;
 
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
     private String avatar;
 
     private String bio;

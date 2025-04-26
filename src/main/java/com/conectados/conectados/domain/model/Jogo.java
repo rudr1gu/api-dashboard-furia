@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class Jogo {
     @NotBlank
     private String nome;
 
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
     private String imagemUrl;
 
     private String descricao;

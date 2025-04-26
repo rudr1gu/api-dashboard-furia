@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,5 +31,6 @@ public class Evento {
 
     private String link;
 
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
     private String imagemUrl;
 }
