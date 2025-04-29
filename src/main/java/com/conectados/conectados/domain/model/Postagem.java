@@ -52,6 +52,6 @@ public class Postagem {
     private LocalDate dataAtualizacao;
 
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"postagem", "usuario"})
+    @JsonIgnoreProperties({"postagem"})
     private List<Resposta> respostas;
 }

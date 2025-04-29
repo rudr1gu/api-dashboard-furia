@@ -3,6 +3,7 @@ package com.conectados.conectados.domain.model;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,19 +29,22 @@ public class Resposta {
     private Long id;
 
     @NotBlank
+    @Size(min = 5, max = 1000)
     private String conteudo;
 
     @CreationTimestamp
     private LocalDate dataCriacao;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDate dataAtualizacao;
 
     @ManyToOne
-    @JsonIgnoreProperties({ "postagens", "respostas", "nivel", "redesSociais", "jogos" })
-    private Usuario usuario;
+    @JsonIgnoreProperties(value = {
+        "postagens", "respostas", "redesSociais", "nivel", "jogos", "senha"
+    })
+    private Usuario usuario;    
 
     @ManyToOne
-    @JsonIgnoreProperties({ "usuario", "respostas" })
+    @JsonIgnoreProperties({"respostas", "usuario"}) // evita repetir postagem e usuario da postagem
     private Postagem postagem;
 }
