@@ -1,4 +1,79 @@
-## Diagrama Entidade Relacionamento 
+# API Dashboard FURIA
+
+API REST em Spring Boot para gerenciamento de usuários, jogos, níveis, postagens, respostas, interações, eventos e redes sociais.
+
+## Visão geral
+
+- **Stack principal:** Java 17+, Spring Boot 3.4, Spring Web, Spring Data JPA, Spring Security + JWT, Springdoc OpenAPI.  
+- **Banco de dados:** MySQL (perfil `dev`) e PostgreSQL (perfil `prod`).  
+- **Autenticação:** JWT stateless com login em `/usuarios/logar`.  
+- **Documentação automática:** Swagger UI em `/swagger-ui.html`.
+
+## Como executar
+
+### Pré-requisitos
+
+- Java 17+
+- Maven 3.9+
+- Banco de dados conforme perfil ativo
+
+### Perfis de ambiente
+
+O projeto está com o perfil `prod` ativo por padrão:
+
+```properties
+spring.profiles.active=prod
+```
+
+- `dev` usa **MySQL** local (`application-dev.properties`)
+- `prod` usa **PostgreSQL** via variáveis de ambiente (`application-prod.properties`)
+
+Para rodar localmente com MySQL:
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+```
+
+## Endpoints principais
+
+Base path: `/`
+
+### Usuários
+
+- `GET /usuarios/all`
+- `GET /usuarios/{id}`
+- `POST /usuarios/logar` *(público)*
+- `POST /usuarios/cadastrar` *(público)*
+- `PUT /usuarios/atualizar`
+
+### Jogos
+
+- `GET /jogos/all` *(público)*
+- `GET /jogos/{id}`
+- `POST /jogos/cadastrar`
+- `PUT /jogos/atualizar/{id}`
+- `DELETE /jogos/{id}`
+
+### Demais recursos
+
+Todos seguem o padrão CRUD com sufixos equivalentes (`/all`, `/{id}`, `/cadastrar`, `/atualizar/{id}`, `DELETE /{id}`):
+
+- `/postagens`
+- `/respostas`
+- `/interacoes`
+- `/eventos`
+- `/redes-sociais`
+- `/niveis`
+
+> Com exceção dos endpoints públicos listados acima, os demais exigem header `Authorization: Bearer <token>`.
+
+## Documentação detalhada
+
+A análise técnica completa do repositório está em:
+
+- [`docs/ANALISE_REPOSITORIO.md`](docs/ANALISE_REPOSITORIO.md)
+
+## Diagrama entidade-relacionamento
 
 ```mermaid
 erDiagram
@@ -7,153 +82,8 @@ erDiagram
   USUARIO ||--o{ RESPOSTA : escreve
   USUARIO ||--o{ INTERACAO : reage
   USUARIO }o--o{ JOGO : joga
-  USUARIO }o--o{ EVENTO : participa
-  USUARIO }o--o{ CONQUISTA : ganha
   USUARIO }|--|| NIVEL : tem
 
   POSTAGEM ||--o{ RESPOSTA : recebe
   POSTAGEM ||--o{ INTERACAO : tem
-  POSTAGEM }o--|| JOGO : relacionado_a
-
-  REDE_SOCIAL {
-    int id
-    string plataforma
-    string link
-  }
-
-  USUARIO {
-    int id
-    string nome
-    string nickname
-    string email
-    string senha
-    string avatar
-    datetime data_cadastro
-    int nivel_id
-  }
-
-  POSTAGEM {
-    int id
-    text conteudo
-    datetime data
-  }
-
-  RESPOSTA {
-    int id
-    text conteudo
-    datetime data
-  }
-
-  INTERACAO {
-    int id
-    string tipo
-  }
-
-  JOGO {
-    int id
-    string nome
-    string imagem
-  }
-
-  EVENTO {
-    int id
-    string titulo
-    text descricao
-    datetime data_evento
-    string link
-    string local
-    string imagem
-  }
-
-  NIVEL {
-    int id
-    string nome
-  }
-
-  CONQUISTA {
-    int id
-    string titulo
-    text descricao
-    string icone
-  }
-
-```
-
-## Estruturas das Pastas
-
-```
-api-dashboard-furia/
-├─ .mvn/
-│  └─ wrapper/
-│     └─ maven-wrapper.properties
-├─ src/
-│  ├─ main/
-│  │  ├─ java/
-│  │  │  └─ com/
-│  │  │     └─ conectados/
-│  │  │        └─ conectados/
-│  │  │           ├─ configuration/
-│  │  │           │  └─ SwaggerConfig.java
-│  │  │           ├─ controller/
-│  │  │           │  ├─ EventoController.java
-│  │  │           │  ├─ InteracaoController.java
-│  │  │           │  ├─ JogoController.java
-│  │  │           │  ├─ NivelController.java
-│  │  │           │  ├─ PostagemController.java
-│  │  │           │  ├─ RedeSocialController.java
-│  │  │           │  ├─ RespostaController.java
-│  │  │           │  └─ UsuarioController.java
-│  │  │           ├─ domain/
-│  │  │           │  ├─ model/
-│  │  │           │  │  ├─ Evento.java
-│  │  │           │  │  ├─ Interacao.java
-│  │  │           │  │  ├─ Jogo.java
-│  │  │           │  │  ├─ Nivel.java
-│  │  │           │  │  ├─ Postagem.java
-│  │  │           │  │  ├─ RedeSocial.java
-│  │  │           │  │  ├─ Resposta.java
-│  │  │           │  │  ├─ Usuario.java
-│  │  │           │  │  └─ UsuarioLogin.java
-│  │  │           │  └─ repository/
-│  │  │           │     ├─ EventoRepository.java
-│  │  │           │     ├─ InteracaoRepository.java
-│  │  │           │     ├─ JogoRepository.java
-│  │  │           │     ├─ NivelRepository.java
-│  │  │           │     ├─ PostagemRepository.java
-│  │  │           │     ├─ RedeSocialRepository.java
-│  │  │           │     ├─ RespostaRepository.java
-│  │  │           │     └─ UsuarioRepository.java
-│  │  │           ├─ security/
-│  │  │           │  ├─ BasicSecurityConfig.java
-│  │  │           │  ├─ JwtAuthFilter.java
-│  │  │           │  ├─ JwtService.java
-│  │  │           │  ├─ UserDetailsImpl.java
-│  │  │           │  └─ UserDetailsServiceImpl.java
-│  │  │           ├─ services/
-│  │  │           │  ├─ EventoService.java
-│  │  │           │  ├─ InteracaoService.java
-│  │  │           │  ├─ JogoService.java
-│  │  │           │  ├─ NivelService.java
-│  │  │           │  ├─ PostagemService.java
-│  │  │           │  ├─ RedeSocialService.java
-│  │  │           │  ├─ RespostaService.java
-│  │  │           │  └─ UsuarioService.java
-│  │  │           └─ ConectadosApplication.java
-│  │  └─ resources/
-│  │     └─ application.properties
-│  └─ test/
-│     └─ java/
-│        └─ com/
-│           └─ conectados/
-│              └─ conectados/
-│                 ├─ usuariotest/
-│                 │  └─ UsuarioTest.java
-│                 └─ ConectadosApplicationTests.java
-├─ .gitattributes
-├─ .gitignore
-├─ mvnw
-├─ mvnw.cmd
-├─ pom.xml
-└─ README.md
-
 ```
