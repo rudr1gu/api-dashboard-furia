@@ -72,6 +72,7 @@ Todos seguem o padrão CRUD com sufixos equivalentes (`/all`, `/{id}`, `/cadastr
 A análise técnica completa do repositório está em:
 
 - [`docs/ANALISE_REPOSITORIO.md`](docs/ANALISE_REPOSITORIO.md)
+- [`docs/ARQUITETURA_HEXAGONAL.md`](docs/ARQUITETURA_HEXAGONAL.md) *(proposta de estrutura de pastas com DTOs e portas/adaptadores)*
 
 ## Diagrama entidade-relacionamento
 
