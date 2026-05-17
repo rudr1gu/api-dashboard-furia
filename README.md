@@ -1,3 +1,9 @@
+## Automacao de API
+
+A documentacao da automacao de endpoints com Java 17, JUnit 5 e RestAssured esta em:
+
+[README_AUTOMACAO_API.md](README_AUTOMACAO_API.md)
+
 ## Diagrama Entidade Relacionamento 
 
 ```mermaid
